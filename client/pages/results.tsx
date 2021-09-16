@@ -50,41 +50,49 @@ const Results: NextPage = () => {
 			infowindow = new google.maps.InfoWindow()
 
 			await getResultCoordinates()
-			for (i = 0; i < positions.length; i++) {
+			positions.forEach((result: any) => {
 				marker = new google.maps.Marker({
 					position: {
-						lat: positions[i].position.lng,
-						lng: positions[i].position.lat,
+						lat: result.position.lng,
+						lng: result.position.lat,
 					},
 					map: resultsMap,
 				})
+				// for (i = 0; i < positions.length; i++) {
+				// 	marker = new google.maps.Marker({
+				// 		position: {
+				// 			lat: positions[i].position.lng,
+				// 			lng: positions[i].position.lat,
+				// 		},
+				// 		map: resultsMap,
+				// 	})
 
 				google.maps.event.addListener(
 					marker,
 					'click',
-					(function (marker, i) {
-						return function () {
-							const { mag, place, time } = positions[i]
+					((marker) => {
+						return () => {
+							const { mag, place, time } = result
 							const date = new Date(time)
 							infowindow.setContent(
 								`<p> Time: ${date.toString()}<br />Magnitude: ${mag}<br />Location: ${place}</p>`
 							)
 							infowindow.open(resultsMap, marker)
 						}
-					})(marker, i)
+					})(marker)
 				)
 
 				// Attempt to close marker on double click
 				google.maps.event.addListener(
 					marker,
 					'dblclick',
-					(function (marker, i) {
-						return function () {
-							infowindow.close(resultsMap, marker[i])
+					((marker) => {
+						return () => {
+							infowindow.close(resultsMap, marker)
 						}
-					})(marker, i)
+					})(marker)
 				)
-			}
+			})
 		})
 	}, [])
 
