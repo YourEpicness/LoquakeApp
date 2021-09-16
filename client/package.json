@@ -19,6 +19,7 @@
     "tailwindcss": "^2.2.14"
   },
   "devDependencies": {
+    "@types/googlemaps": "^3.43.3",
     "@types/react": "17.0.20",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
