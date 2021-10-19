@@ -13,6 +13,7 @@ Front-end uses: Next.JS, Typescript, and TailwindCSS
 Back-end uses: NodeJS, ExpressJS
 
 ### TODO:
+- Add concurrently script to run both
 - Refactor code (currently a mess 🙁 )
 - Concurrently run front-end and back-end
 - Add MongoDB for data storage
@@ -29,3 +30,10 @@ Back-end uses: NodeJS, ExpressJS
 - Add Redis for cacheing results
 - Rewrite backend with Typescript
 - Add unit testing
+
+### To Run
+1. ` cd/client`
+2. `npm run dev`
+3. Go back by `cd ..`
+4. ` cd/server`
+5. `npm run start`
